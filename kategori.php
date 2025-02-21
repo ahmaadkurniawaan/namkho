@@ -65,7 +65,7 @@ session_start();
                                         <?php
                                         $res = mysqli_query($db, 'select * from menu_category');
                                         while ($row = mysqli_fetch_array($res)) {
-                                            echo '<li><a class="filter-link" href="#" data-filter=".' . $row['m_name'] . '"> ' . $row['m_name'] . '</a> </li> </br>';
+                                            echo '<li><a class="filter-link" href="#" data-filter=".' . $row['m_id'] . '">' . $row['m_name'] . '</a></li><br>';
                                         }
                                         ?>
                                     </ul>
@@ -74,16 +74,12 @@ session_start();
                             <!-- restaurants filter nav ends -->
                         </div>
                         <div class="col-md-10">
-                            <?php
-                            // fetch records from database to display popular first 3 dishes from table
+                        <?php
                             $query_res = mysqli_query($db, "SELECT * FROM dishes");
                             while ($r = mysqli_fetch_array($query_res)) {
                                 $query = mysqli_query($db, "SELECT * FROM menu_category WHERE menu_category.m_id = '".$r['cat_menu_id']."'");
                                 $rowss = mysqli_fetch_array($query);
-                                // echo ' <div class="col-xs-12 col-sm-6 col-md-4 food-item single-restaurant all' .
-                                echo ' <div class="col-xs-12 col-sm-6 col-md-4 food-item single-restaurant all ' . $rowss['m_name'] . ''.
-                                    $rowss['m_name'] .
-                                    '"> 
+                                echo '<div class="col-xs-12 col-sm-6 col-md-4 food-item single-restaurant all ' . $rowss['m_id'] . '"> 
                                                                                                                                                                     										<div class="food-item-wrap box">
                                                                                                                                                                     											<div class="figure-wrap bg-image" data-image-src="admin/Res_img/dishes/' .
                                     $r['img'] .
@@ -135,35 +131,10 @@ session_start();
     <script src="js/animsition.min.js"></script>
     <script src="js/bootstrap-slider.min.js"></script>
     <script src="js/jquery.isotope.min.js"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
     <script src="js/headroom.js"></script>
     <script src="js/foodpicky.min.js"></script>
-    <!-- <script>
-        $(document).ready(function() {
-            $('.filter-link').on('click', function(e) {
-                e.preventDefault();
-                var filterValue = $(this).attr('data-filter');
-                $('.food-item').hide();
-                $(filterValue).show();
-            });
-        });
-        document.getElementById('searchInput').addEventListener('keyup', function() {
-            let searchQuery = this.value.toLowerCase();
-            let menuItems = document.getElementsByClassName('food-item');
 
-            for (let item of menuItems) {
-                let title = item.querySelector('h5 a').innerText.toLowerCase();
-                let slogan = item.querySelector('.product-name').innerText.toLowerCase();
-
-                // Cek apakah judul atau slogan mengandung kata kunci pencarian
-                if (title.includes(searchQuery) || slogan.includes(searchQuery)) {
-                    item.style.display = '';
-                } else {
-                    item.style.display = 'none';
-                }
-            }
-        });
-    </script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
 <script>
     $(document).ready(function() {
         // Inisialisasi Isotope
