@@ -149,22 +149,38 @@ session_start();
                     <script src="js/headroom.js"></script>
                     <script src="js/foodpicky.min.js"></script>
                     <script>
-                        document.getElementById('searchInput').addEventListener('keyup', function() {
-                            let searchQuery = this.value.toLowerCase();
-                            let menuItems = document.getElementsByClassName('food-item');
+                        $(document).ready(function() {
+        // Inisialisasi Isotope
+        var $grid = $('.row').isotope({
+            itemSelector: '.food-item',
+            layoutMode: 'fitRows',
+            transitionDuration: '0.6s',
+            stagger: 30
+        });
 
-                            for (let item of menuItems) {
-                                let title = item.querySelector('h5 a').innerText.toLowerCase();
-                                let slogan = item.querySelector('.product-name').innerText.toLowerCase();
+        // Filter kategori
+        $('.filter-link').on('click', function(e) {
+            e.preventDefault();
+            var filterValue = $(this).attr('data-filter');
+            $grid.isotope({ filter: filterValue });
+            
+            // Update class selected
+            $('.filter-link').removeClass('selected');
+            $(this).addClass('selected');
+        });
 
-                                // Cek apakah judul atau slogan mengandung kata kunci pencarian
-                                if (title.includes(searchQuery) || slogan.includes(searchQuery)) {
-                                    item.style.display = '';
-                                } else {
-                                    item.style.display = 'none';
-                                }
-                            }
-                        });
+        // Search function
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            let searchQuery = this.value.toLowerCase();
+            $grid.isotope({
+                filter: function() {
+                    let title = $(this).find('h5 a').text().toLowerCase();
+                    let slogan = $(this).find('.product-name').text().toLowerCase();
+                    return title.includes(searchQuery) || slogan.includes(searchQuery);
+                }
+            });
+        });
+    });
                     </script>
 </body>
 
