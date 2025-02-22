@@ -63,10 +63,10 @@ session_start();
                         $query_res = mysqli_query(
                             $db,
                             "SELECT d.*, m.m_name 
-                                                           FROM dishes d
-                                                           LEFT JOIN menu_category m ON d.cat_menu_id = m.m_id
-                                                           ORDER BY d.price ASC 
-                                                           LIMIT 6",
+                                                                                   FROM dishes d
+                                                                                   LEFT JOIN menu_category m ON d.cat_menu_id = m.m_id
+                                                                                   ORDER BY d.price ASC 
+                                                                                   LIMIT 6",
                         ); // Tampilkan 6 menu termurah
                         // var_dump($query_res);
                         
@@ -79,10 +79,10 @@ session_start();
                             $history_query = mysqli_query(
                                 $db,
                                 "SELECT d.cat_menu_id, COUNT(*) as order_count 
-                                                                  FROM users_orders o
-                                                                  JOIN dishes d ON o.d_id = d.title
-                                                                  WHERE o.u_id = $user_id
-                                                                  GROUP BY d.cat_menu_id",
+                                                                                          FROM users_orders o
+                                                                                          JOIN dishes d ON o.d_id = d.title
+                                                                                          WHERE o.u_id = $user_id
+                                                                                          GROUP BY d.cat_menu_id",
                             );
                         
                             while ($hist = mysqli_fetch_array($history_query)) {
@@ -102,36 +102,36 @@ session_start();
                             $recommendation_label = $recommendation_score > 1.5 ? '<span class="badge badge-danger">Termurah</span>' : '';
                         
                             echo '<div class="col-xs-12 col-sm-6 col-md-4 food-item">
-                                        <div class="food-item-wrap box">
-                                            <div class="figure-wrap bg-image" data-image-src="admin/Res_img/dishes/' .
+                                                                <div class="food-item-wrap box">
+                                                                    <div class="figure-wrap bg-image" data-image-src="admin/Res_img/dishes/' .
                                 $r['img'] .
                                 '">
-                                                <div class="distance"><i class="fa fa-pin"></i>' .
+                                                                        <div class="distance"><i class="fa fa-pin"></i>' .
                                 $r['m_name'] .
                                 $recommendation_label .
                                 '</div>
-                                                
-                                            </div>
-                                            <div class="content">
-                                                <h5><a href="dishes.php?res_id=' .
+                                                                        
+                                                                    </div>
+                                                                    <div class="content">
+                                                                        <h5><a href="dishes.php?res_id=' .
                                 $r['rs_id'] .
                                 '">' .
                                 $r['title'] .
                                 '</a></h5>
-                                                <div class="product-name">' .
+                                                                        <div class="product-name">' .
                                 $r['slogan'] .
                                 '</div>
-                                                <div class="price-btn-block"> 
-                                                    <span class="price">Rp.' .
+                                                                        <div class="price-btn-block"> 
+                                                                            <span class="price">Rp.' .
                                 number_format($r['price'], 0, ',', '.') .
                                 '</span> 
-                                                    <a href="dishes.php?res_id=' .
+                                                                            <a href="dishes.php?res_id=' .
                                 $r['rs_id'] .
                                 '" class="btn ctaBtn pull-right">Pesan Sekarang</a> 
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>';
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>';
                         }
                         ?>
                     </div>
@@ -146,41 +146,44 @@ session_start();
                     <script src="js/animsition.min.js"></script>
                     <script src="js/bootstrap-slider.min.js"></script>
                     <script src="js/jquery.isotope.min.js"></script>
+                    <script src="js/isotope.pkgd.min.js"></script>
                     <script src="js/headroom.js"></script>
                     <script src="js/foodpicky.min.js"></script>
                     <script>
                         $(document).ready(function() {
-        // Inisialisasi Isotope
-        var $grid = $('.row').isotope({
-            itemSelector: '.food-item',
-            layoutMode: 'fitRows',
-            transitionDuration: '0.6s',
-            stagger: 30
-        });
+                            // Inisialisasi Isotope
+                            var $grid = $('.row').isotope({
+                                itemSelector: '.food-item',
+                                layoutMode: 'fitRows',
+                                transitionDuration: '0.6s',
+                                stagger: 30
+                            });
 
-        // Filter kategori
-        $('.filter-link').on('click', function(e) {
-            e.preventDefault();
-            var filterValue = $(this).attr('data-filter');
-            $grid.isotope({ filter: filterValue });
-            
-            // Update class selected
-            $('.filter-link').removeClass('selected');
-            $(this).addClass('selected');
-        });
+                            // Filter kategori
+                            $('.filter-link').on('click', function(e) {
+                                e.preventDefault();
+                                var filterValue = $(this).attr('data-filter');
+                                $grid.isotope({
+                                    filter: filterValue
+                                });
 
-        // Search function
-        document.getElementById('searchInput').addEventListener('keyup', function() {
-            let searchQuery = this.value.toLowerCase();
-            $grid.isotope({
-                filter: function() {
-                    let title = $(this).find('h5 a').text().toLowerCase();
-                    let slogan = $(this).find('.product-name').text().toLowerCase();
-                    return title.includes(searchQuery) || slogan.includes(searchQuery);
-                }
-            });
-        });
-    });
+                                // Update class selected
+                                $('.filter-link').removeClass('selected');
+                                $(this).addClass('selected');
+                            });
+
+                            // Search function
+                            document.getElementById('searchInput').addEventListener('keyup', function() {
+                                let searchQuery = this.value.toLowerCase();
+                                $grid.isotope({
+                                    filter: function() {
+                                        let title = $(this).find('h5 a').text().toLowerCase();
+                                        let slogan = $(this).find('.product-name').text().toLowerCase();
+                                        return title.includes(searchQuery) || slogan.includes(searchQuery);
+                                    }
+                                });
+                            });
+                        });
                     </script>
 </body>
 
