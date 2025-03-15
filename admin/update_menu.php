@@ -2,7 +2,7 @@
 <html lang="en">
 <?php
 include("../connection/connect.php");
-error_reporting(0);
+// error_reporting(0);
 session_start();
 
 
@@ -33,7 +33,8 @@ if (isset($_POST['submit'])) {
 												</div>';
             } else {
 
-                $sql = "update dishes set rs_id='$_POST[res_name]',cat_menu_id='$_POST[cat_name]',title='$_POST[d_name]',slogan='$_POST[about]',price='$_POST[price]',img='$fnew' where d_id='$_GET[menu_upd]'";  // update the submited data ino the database :images
+                $sql = "update dishes set rs_id='$_POST[res_name]',cat_menu_id='$_POST[cat_name]',title='$_POST[d_name]',slogan='$_POST[about]',price='$_POST[price]',bestseller='$_POST[bestseller]',termurah='$_POST[termurah]',img='$fnew' where d_id='$_GET[menu_upd]'";  // update the submited data ino the database :images
+                // var_dump($sql);die;
                 mysqli_query($db, $sql);
                 move_uploaded_file($temp, $store);
 
@@ -190,6 +191,28 @@ if (isset($_POST['submit'])) {
                                                     }
 
                                                     ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Bestseller</label>
+                                                <select name="bestseller" class="form-control custom-select" data-placeholder="Choose a Resto" tabindex="1">
+                                                    <option value="t" selecter>Tidak</option>
+                                                    <option value="y">Ya</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Termurah</label>
+                                                <select name="termurah" class="form-control custom-select" data-placeholder="Choose a Resto" tabindex="1">
+                                                    <option value="t" selecter>Tidak</option>
+                                                    <option value="y">Ya</option>
                                                 </select>
                                             </div>
                                         </div>

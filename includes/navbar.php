@@ -12,8 +12,9 @@
                     $menu_items = array(
                         'index.php' => 'Home',
                         'restaurants.php' => 'Resto',
-                        'bestseller.php' => 'Best Seller',
-                        'termurah.php' => 'Termurah',
+                        'rekomendasi.php' => 'Rekomendasi',
+                        // 'bestseller.php' => 'Best Seller',
+                        // 'termurah.php' => 'Termurah',
                         'kategori.php' => 'Kategori',
                         'contact.php' => 'Hubungi Kami'
                     );

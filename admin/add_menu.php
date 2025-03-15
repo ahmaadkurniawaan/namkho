@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
 									</div>';
             } else {
 
-                $sql = "INSERT INTO dishes(rs_id,title,cat_menu_id,slogan,price,img) VALUE('" . $_POST['res_name'] . "','" . $_POST['d_name'] . "','" . $_POST['cat_name'] . "','" . $_POST['about'] . "','" . $_POST['price'] . "','" . $fnew . "')";
+                $sql = "INSERT INTO dishes(rs_id,title,cat_menu_id,slogan,price,img,bestseller,termurah) VALUE('" . $_POST['res_name'] . "','" . $_POST['d_name'] . "','" . $_POST['cat_name'] . "','" . $_POST['about'] . "','" . $_POST['price'] . "','" . $fnew . "','" . $_POST['bestseller'] . "','" . $_POST['termurah'] . "')";
                 mysqli_query($db, $sql);
                 move_uploaded_file($temp, $store);
 
@@ -190,6 +190,28 @@ if (isset($_POST['submit'])) {
                                                     }
 
                                                     ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Bestseller</label>
+                                                <select name="bestseller" class="form-control custom-select" data-placeholder="Choose a Resto" tabindex="1">
+                                                    <option value="t" selected>Tidak</option>
+                                                    <option value="y">Ya</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Termurah</label>
+                                                <select name="termurah" class="form-control custom-select" data-placeholder="Choose a Resto" tabindex="1">
+                                                    <option value="t" selected>Tidak</option>
+                                                    <option value="y">Ya</option>
                                                 </select>
                                             </div>
                                         </div>

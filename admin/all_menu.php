@@ -67,6 +67,8 @@ session_start();
                                                 <th>Slogan</th>
                                                 <th>Harga</th>
                                                 <th>Gambar</th>
+                                                <th>Best Seller</th>
+                                                <th>Termurah</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -100,6 +102,8 @@ session_start();
 																					<center><img src="Res_img/dishes/' . $rows['img'] . '" class="img-responsive  radius" style="max-height:100px;max-width:150px;" /></center>
 																					</div>
                                                                                     </td>
+                                                                                    <td>' . ($rows['bestseller'] == 'y' ? '<i class="fa-solid fa-check" style="color: #00bc7e;"></i>' : '') . '</td>
+                                                                                    <td>' . ($rows['termurah'] == 'y' ? '<i class="fa-solid fa-check" style="color: #00bc7e;"></i>' : '') . '</td>
 																					
 																				
 																					<td><a href="includes/delete/delete_menu.php?menu_del=' . $rows['d_id'] . '" class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i class="fa-solid fa-trash" style="font-size:16px"></i></a> 
