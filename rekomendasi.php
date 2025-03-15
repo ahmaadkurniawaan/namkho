@@ -156,10 +156,10 @@ session_start();
                                 // Tampilkan hasil dengan nilai similarity
                                 echo '<div class="col-xs-12 col-sm-6 col-md-4 food-item single-restaurant all ' . $rowss['m_id'] . '">
                                 <div class="food-item-wrap box">
-                                    <div class="figure-wrap bg-image" data-image-src="admin/Res_img/dishes/' . $r['img'] . '">
-                                        <div class="distance"><i class="fa fa-pin"></i>' . $rowss['m_name'] . ' - ' . number_format($r['similarity'], 2) . '</div>
-                                        ' . ($r['similarity'] == 1 ? '<span class="badge bg-success" style="position: absolute; top: 10px; right: 10px;">-</span>' : '') . '
-                                    </div>
+                                <div class="figure-wrap bg-image" data-image-src="admin/Res_img/dishes/' . $r['img'] . '">
+                                    <div class="distance"><i class="fa fa-pin"></i>' . $rowss['m_name'] . ' - ' . number_format($r['similarity'], 2) . '</div>
+                                    ' . ($r['similarity'] == 1 ? '<span class="badge bg-danger text-white" style="position: absolute; top: 10px; right: 10px;">Termurah</span>' : '') . '
+                                </div>
                                     <div class="content">
                                         <h5><a href="dishes.php?res_id=' . $r['rs_id'] . '">' . $r['title'] . '</a></h5>
                                         <div class="product-name">' . $r['slogan'] . '</div>
